@@ -49,8 +49,13 @@ function SignUpPage(props) {
         e.preventDefault()
         const inputField = e.target.id.split('-')[0]
         const userDataObj = {}
+        const error = inputError
         userData[inputField] = e.target.value
         setUserData({ ...userData, userDataObj })
+        error[inputField]["status"] = false
+        error[inputField]["error"] = ""
+        setInputError({...inputError, error})
+        
     }
 
     const signUpSubmitHandler = (e) => {
@@ -96,7 +101,7 @@ function SignUpPage(props) {
         if (!fields["username"]) {
             setFormIsValid(false)
             errors["username"]["status"] = true
-            errors["username"]["error"] = "Please enter your username"
+            errors["username"]["error"] = "Please enter a valid username"
         }
 
         if (typeof fields["username"] !== "undefined") {
@@ -110,7 +115,7 @@ function SignUpPage(props) {
         if (!fields["rusername"]) {
             setFormIsValid(false)
             errors["rusername"]["status"] = true
-            errors["rusername"]["error"] = "Please enter your username"
+            errors["rusername"]["error"] = "Please enter the same username"
         }
 
         if (typeof fields["rusername"] !== "undefined") {

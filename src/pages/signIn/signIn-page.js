@@ -32,24 +32,24 @@ function SignInPage(props) {
     }
 
     const userNameSubmitHandler = (e, feildName) => {
-        e.preventDefault();
-        setVarifyStatus(true);
-        setTimeout(async () => await submitSignIn(feildName, userName), 2000);
+        e.preventDefault()
+        setVarifyStatus(true)
+        setTimeout(async () => await submitSignIn(feildName, userName), 2000)
     }
 
 
     const passwordSubmitHandler = (e, feildName) => {
-        e.preventDefault();
-        setVarifyStatus(true);
-        setTimeout(async () => await submitSignIn(feildName, userPassword), 2000);
+        e.preventDefault()
+        setVarifyStatus(true)
+        setTimeout(async () => await submitSignIn(feildName, userPassword), 2000)
     }
 
     const submitSignIn = async (feildName, userName) => {
         if (feildName === 'username') {
             const isUserNameValid = await checkUserName(userName)
             if(isUserNameValid){
-                setLoadPwdForm(true);
-                setVarifyStatus(false);
+                setLoadPwdForm(true)
+                setVarifyStatus(false)
             } else {
                 const mapedInputError = inputError["username"];
                 mapedInputError.status = true;
@@ -65,10 +65,10 @@ function SignInPage(props) {
         if(feildName === 'password'){
             const isPasswordalid = await checkUserPassword(userName)
             if(isPasswordalid){
-                setVarifyStatus(false);
+                setVarifyStatus(false)
             } else {
-                const mapedInputError = inputError["password"];
-                mapedInputError.status = true;
+                const mapedInputError = inputError["password"]
+                mapedInputError.status = true
                 setVarifyStatus(false)
                 setInputError({
                     ...inputError,
@@ -80,11 +80,20 @@ function SignInPage(props) {
     }
 
     const checkUserName = async (userName) => {
-        return true;
+        if(userName){
+            return true 
+        }else{
+            return false
+        }
     }
 
     const checkUserPassword = async (password) => {
-        return false;
+        return false
+    }
+
+    const redirectToUserForm = (e) => {
+        e.preventDefault()
+        console.log('test')
     }
 
     return (
@@ -105,6 +114,7 @@ function SignInPage(props) {
                    onInputChange={(e) => setPasswordHandler(e)}
                    onSubmit={passwordSubmitHandler}
                    userValidationResult={inputError["password"]}
+                   redirectToUserForm={redirectToUserForm}
                 />}
         </div>
     )

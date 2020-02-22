@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import SubmitButton from '../../../../components/Buttons/ButtonSubmit'
 import TextInput from '../../../../components/InputFields/TextInput'
+import BackIcon from '../../icons/back.svg'
 
 function SignInPwd({
     validUserName,
@@ -9,9 +10,11 @@ function SignInPwd({
     value,
     onInputChange,
     onSubmit,
-    userValidationResult }) {
+    userValidationResult,
+    redirectToUserForm }) {
     return (
-        <div className="signin-user-form">
+        <div className="signin-password-form">
+            <span className="back-icon" onClick={redirectToUserForm}><img src={BackIcon} /></span>
             <span className="header">Welcome</span>
             <span className="user-name">{validUserName}</span>
             <form >
