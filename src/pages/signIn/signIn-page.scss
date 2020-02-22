@@ -1,0 +1,56 @@
+.signin-container{
+    padding: 0px 30px;
+    & .signin-user-form{
+        & .header{
+            display: block;
+            margin: 48px 0px 24px 0px;
+            font-size: 22px;
+            line-height: 28px;
+            color: #000000;
+        }
+
+        & .user-input-label{
+            display: block;
+            font-size: 16px;
+            line-height: 22px;
+            color: #3c3c3c;
+            margin: 0px 0px 8px 0px;
+        }
+
+        & .user-input-field{
+            border: 1px solid #3c3c3c;
+            font-size: 16px;
+            line-height: 22px;
+            color: #3c3c3c;
+        }
+
+        & .user-input-error{
+            background-color: #dcdcdc;
+            border: 1px solid #bbbbbb;
+            border-radius: 4px;
+            height: 38px;
+            & span{
+                display: inline-block;
+                padding: 5px;
+            }
+        }
+
+        & .sign-in-btn{
+            & button{
+                height: 38px;
+                font-size: 16px;
+                line-height: 22px;
+                width: 100%;
+                padding: 8px;
+                margin: 8px 0px;
+                color: #ffffff;
+                background: #0696d7;
+                border-radius: 4px;
+            }
+        }
+
+        & .error{
+            border: 1px solid #ee4444;
+        }
+    }
+}

@@ -1,20 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import ButtonSubmit from '../../components/Buttons/ButtonSubmit'
 
-function AuthPage(props) {
+function SignUpPage(props) {
     return (
-        <div className="auth-container">
+        <div className="signup-container">
             <h1>Auth page</h1>
             <ButtonSubmit labelName={"create"}/>
         </div>
     )
 }
 
-AuthPage.propTypes = {
+SignUpPage.propTypes = {
 
 }
 
-export default AuthPage;
+export default SignUpPage;
 

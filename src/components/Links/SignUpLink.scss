@@ -1,0 +1,24 @@
+.sign-up-link-container{
+    text-align: center;
+    & .sign-up-message{
+        font-size: 14px;
+        line-height: 20px;
+        color: #808080;
+        padding-right: 5px;
+    }
+
+    & .sign-up-link{
+        font-size: 14px;
+        line-height: 20px;
+        color: #006eaf;
+        & a {
+            text-decoration: none;
+            }
+    }
+
+    & .sign-up-link:hover{
+        & a{
+            text-decoration: underline;
+        }
+    }
+}
