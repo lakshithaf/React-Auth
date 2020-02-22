@@ -3,16 +3,19 @@ import PropTypes from 'prop-types'
 
 function TextInput({ 
     inputId, 
+    inputname,
     inputType, 
     inputValue, 
     inputFieldOnChnage, 
     inputLabel, 
+    autoFocus,
     isValidField, 
     inputError }) {
     return (
         <div className="input-field-container">
-            <span className="user-input-label">{inputLabel}</span>
+            <label htmlFor={inputId} className="user-input-label">{inputLabel}</label>
             <input
+                name={inputname}
                 type={inputType}
                 value={inputValue}
                 onChange={inputFieldOnChnage}
@@ -22,7 +25,7 @@ function TextInput({
                 id={inputId}
                 spellCheck="false"
                 maxLength="20"
-                autoFocus />
+                autoFocus= {autoFocus}/>
         {isValidField &&
             <div className="user-input-error"><span>{inputError}</span></div>}
 

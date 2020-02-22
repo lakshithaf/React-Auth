@@ -10,11 +10,16 @@ import AuthPageFooter from './components/Footer/AuthPageFooter'
 const AppRoutes = () => {
   return (
     <div className="main-container">
-       <Switch>
+      <div className="left-container">
+
+      </div>
+      <div className="right-container">
+      <Switch>
         <Route exact path="/" component={SignInPage} />
         <Route exact path="/register" component={SignUpPage} />
       </Switch>
       <AuthPageFooter/>
+      </div>
     </div>
   )
 }

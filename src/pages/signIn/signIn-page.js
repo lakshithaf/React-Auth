@@ -1,57 +1,111 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import SignInUserForm from './components/forms/signInUser'
 import SignInPwdForm from './components/forms/signInPwd'
 import './signIn-page.scss'
 
-
-
 function SignInPage(props) {
-    const [loadPwdForm, setLoadPwdFrom] = useState(false)
+    const [loadPwdForm, setLoadPwdForm] = useState(false)
     const [userName, setUserName] = useState("")
-    const [userNameError, setUserNameError] = useState({
-        status: false,
-        error: ""
+    const [userPassword, setUserPassword] = useState("")
+    const [varifyStatus, setVarifyStatus] = useState(false)
+    const [inputError, setInputError] = useState({
+        "username": {
+            status: false,
+            error: "The username is not recognized"
+        },
+        "password":
+        {
+            status: false,
+            error: "The password is wrong"
+        }
     })
 
-
-    const userNameSubmitHandler = (e) => {
-        e.preventDefault();
-        submitUserName(userName)
-    }
-
     const setUserNameHandler = (e) => {
+        e.preventDefault()
+        setUserName(e.target.value)
+    }
+
+    const setPasswordHandler = (e) => {
+        e.preventDefault()
+        setUserPassword(e.target.value)
+    }
+
+    const userNameSubmitHandler = (e, feildName) => {
         e.preventDefault();
-        setUserName(e.target.value);
+        setVarifyStatus(true);
+        setTimeout(async () => await submitSignIn(feildName, userName), 2000);
     }
 
-    const submitUserName = async (userName) => {
-        const isUserNameValid = await checkUserName(userName);
-        if(isUserNameValid){
-            setLoadPwdFrom(true);
-        }else{
-            setUserNameError({
-                status: true,
-                error: "The username is not recognized."
-            })
+
+    const passwordSubmitHandler = (e, feildName) => {
+        e.preventDefault();
+        setVarifyStatus(true);
+        setTimeout(async () => await submitSignIn(feildName, userPassword), 2000);
+    }
+
+    const submitSignIn = async (feildName, userName) => {
+        if (feildName === 'username') {
+            const isUserNameValid = await checkUserName(userName)
+            if(isUserNameValid){
+                setLoadPwdForm(true);
+                setVarifyStatus(false);
+            } else {
+                const mapedInputError = inputError["username"];
+                mapedInputError.status = true;
+                setVarifyStatus(false)
+                setInputError({
+                    ...inputError,
+                    mapedInputError
+                });
+            }
+           
+        } 
+
+        if(feildName === 'password'){
+            const isPasswordalid = await checkUserPassword(userName)
+            if(isPasswordalid){
+                setVarifyStatus(false);
+            } else {
+                const mapedInputError = inputError["password"];
+                mapedInputError.status = true;
+                setVarifyStatus(false)
+                setInputError({
+                    ...inputError,
+                    mapedInputError
+                });
+            }
         }
+    
     }
-
 
     const checkUserName = async (userName) => {
-       return false;
+        return true;
+    }
+
+    const checkUserPassword = async (password) => {
+        return false;
     }
 
     return (
         <div className="signin-container">
-            {!loadPwdForm && 
-            <SignInUserForm 
-              value={userName}
-              onUserInputChange = {(e) => setUserNameHandler(e)}
-              onSubmit={(e) => userNameSubmitHandler(e)} 
-              userValidationResult = {userNameError}
-            />}
-            {loadPwdForm && <SignInPwdForm validUserName={userName} />}
+            {!loadPwdForm &&
+                <SignInUserForm
+                    varifyUserStatus={varifyStatus}
+                    value={userName}
+                    onInputChange={(e) => setUserNameHandler(e)}
+                    onSubmit={userNameSubmitHandler}
+                    userValidationResult={inputError["username"]}
+                />}
+            {loadPwdForm && 
+                 <SignInPwdForm 
+                   validUserName={userName}
+                   varifyPasswordStatus={varifyStatus} 
+                   value={userPassword}
+                   onInputChange={(e) => setPasswordHandler(e)}
+                   onSubmit={passwordSubmitHandler}
+                   userValidationResult={inputError["password"]}
+                />}
         </div>
     )
 }
