@@ -4,6 +4,7 @@ import SignUpLink from '../../../../components/Links/SignUpLink'
 import SubmitButton from '../../../../components/Buttons/ButtonSubmit'
 import TextInput from '../../../../components/InputFields/TextInput'
 
+
 function SignInUser({
     value,
     varifyUserStatus,
@@ -13,10 +14,10 @@ function SignInUser({
 }) {
     return (
         <div className="signin-user-form">
-            <span className="header">Sign In</span>
+            <span className="header">Sign in</span>
             <form >
                 <TextInput
-                    inputId={'user-input-field'}
+                    inputId={'username'}
                     inputType={'text'}
                     inputValue={value}
                     inputFieldOnChnage={onInputChange}

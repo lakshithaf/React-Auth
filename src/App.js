@@ -1,7 +1,8 @@
-import React from 'react';
-import './App.scss';
+import React from 'react'
+import './App.scss'
 
-import AppRoutes from "./App-routes";
+import AppRoutes from "./App-routes"
+import { withToastProvider } from './components/Toast';
 
 function App() {
   return (
@@ -11,4 +12,4 @@ function App() {
   );
 }
 
-export default App;
+export default withToastProvider(App)

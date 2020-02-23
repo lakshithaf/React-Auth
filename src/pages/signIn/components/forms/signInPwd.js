@@ -19,7 +19,7 @@ function SignInPwd({
             <span className="user-name">{validUserName}</span>
             <form >
                 <TextInput
-                    inputId={'password-input-field'}
+                    inputId={'password'}
                     inputType={'password'}
                     inputValue={value}
                     inputFieldOnChnage={onInputChange}

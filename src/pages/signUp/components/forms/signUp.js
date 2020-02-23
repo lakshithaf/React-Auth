@@ -6,12 +6,11 @@ import SignInLink from '../../../../components/Links/SignInLink'
 
 
 function SignUp({
-    varifyPasswordStatus,
+    submitStatus,
     value,
     onInputChange,
     onSubmit,
     formValidationResult }) {
-
     return (
         <div className="signup-user-form">
             <span className="header">Create Account</span>
@@ -20,7 +19,7 @@ function SignUp({
                     <div className="row">
                         <div className="col custom-grid">
                             <TextInput
-                                inputId={'firstname-input-field'}
+                                inputId={'firstname'}
                                 inputname={'firstname'}
                                 inputType={'text'}
                                 inputValue={value['firstname']}
@@ -33,7 +32,7 @@ function SignUp({
                         </div>
                         <div className="col custom-grid">
                             <TextInput
-                                inputId={'lastname-input-field'}
+                                inputId={'lastname'}
                                 inputname={'lastname'}
                                 inputValue={value['lastname']}
                                 inputType={'text'}
@@ -48,7 +47,7 @@ function SignUp({
                     <div className="row">
                         <div className="col custom-grid">
                             <TextInput
-                                inputId={'username-input-field'}
+                                inputId={'username'}
                                 inputname={'username'}
                                 inputValue={value['username']}
                                 inputType={'text'}
@@ -63,7 +62,7 @@ function SignUp({
                     <div className="row">
                         <div className="col custom-grid">
                             <TextInput
-                                inputId={'rusername-input-field'}
+                                inputId={'rusername'}
                                 inputname={'rusername'}
                                 inputValue={value['rusername']}
                                 inputType={'text'}
@@ -78,7 +77,7 @@ function SignUp({
                     <div className="row">
                         <div className="col custom-grid">
                             <TextInput
-                                inputId={'password-input-field'}
+                                inputId={'password'}
                                 inputname={'password'}
                                 inputValue={value['password']}
                                 inputType={'password'}
@@ -93,7 +92,7 @@ function SignUp({
                     <div className="row">
                         <div className="col custom-grid">
                             <TextInput
-                                inputId={'rpassword-input-field'}
+                                inputId={'rpassword'}
                                 inputname={'rpassword'}
                                 inputValue={value['rpassword']}
                                 inputType={'password'}
@@ -106,7 +105,7 @@ function SignUp({
                     </div>
                 </div>
                 <SubmitButton
-                    labelName={varifyPasswordStatus ? "Submitting" : "Create account"}
+                    labelName={submitStatus ? "Submitting" : "Create account"}
                     customClassName="sign-in-btn"
                     action={(e) => onSubmit(e)}
                 />
