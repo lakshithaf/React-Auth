@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import SubmitButton from '../../../../components/Buttons/ButtonSubmit'
 import TextInput from '../../../../components/InputFields/TextInput'
 import SignInLink from '../../../../components/Links/SignInLink'
@@ -115,9 +114,6 @@ function SignUp({
     )
 }
 
-SignUp.propTypes = {
-
-}
 
 export default SignUp
 

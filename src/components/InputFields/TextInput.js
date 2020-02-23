@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 function TextInput({
     inputId,
@@ -11,7 +10,8 @@ function TextInput({
     inputPlaceholder,
     autoFocus,
     isValidField,
-    inputError }) {
+    inputError
+ }) {
     return (
         <div className="input-field-container">
             <label htmlFor={inputId} className="user-input-label">{inputLabel}</label>
@@ -26,16 +26,13 @@ function TextInput({
                 id={inputId}
                 spellCheck="false"
                 maxLength="20"
-                autoFocus={autoFocus} />
+                autoFocus={autoFocus}
+                />
             {isValidField &&
                 <div className="user-input-error"><span>{inputError}</span></div>}
 
         </div>
     )
-}
-
-TextInput.propTypes = {
-
 }
 
 export default TextInput

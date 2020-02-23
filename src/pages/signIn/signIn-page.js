@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
 import SignInUserForm from './components/forms/signInUser'
 import SignInPwdForm from './components/forms/signInPwd'
 import { useToast } from '../../components/Toast'
@@ -23,7 +22,6 @@ function SignInPage(props) {
         }
     })
 
-
     useEffect(() => {
         const userState = props.history.location.state;
         if (props.history.location.state && Object.keys(userState).length > 0 && userState.username) {
@@ -33,7 +31,7 @@ function SignInPage(props) {
             props.history.replace({ ...props.history.location, state })
             toast.add('Account created successfully')
         }
-    });
+    }, [props.history, toast]);
 
     const setInputHandler = (e) => {
         e.preventDefault()
@@ -62,15 +60,16 @@ function SignInPage(props) {
         setTimeout(async () => await submitSignIn(feildName, userPassword), 2000)
     }
 
-    const submitSignIn = async (feildName, userName) => {
+    const submitSignIn = async (feildName, data) => {
         if (feildName === 'username') {
-            const isUserNameValid = await checkUserName(userName)
-            if (isUserNameValid) {
+            const isUserNameValid = await checkUserName(data)
+            if (isUserNameValid.status) {
                 setLoadPwdForm(true)
                 setVarifyStatus(false)
             } else {
                 const mapedInputError = inputError["username"];
                 mapedInputError.status = true;
+                mapedInputError.error = isUserNameValid.error;
                 setVarifyStatus(false)
                 setInputError({
                     ...inputError,
@@ -81,12 +80,14 @@ function SignInPage(props) {
         }
 
         if (feildName === 'password') {
-            const isPasswordalid = await checkUserPassword(userName)
-            if (isPasswordalid) {
+            const isPasswordalid = await checkUserPassword(data)
+            if (isPasswordalid.status) {
                 setVarifyStatus(false)
+                toast.add(`Logging successfully`)
             } else {
                 const mapedInputError = inputError["password"]
                 mapedInputError.status = true
+                mapedInputError.error = isPasswordalid.error;
                 setVarifyStatus(false)
                 setInputError({
                     ...inputError,
@@ -99,14 +100,42 @@ function SignInPage(props) {
 
     const checkUserName = async (userName) => {
         if (userName) {
-            return true
+            if(userName === 'lakshitha'){
+                return {
+                    status: true
+                }
+            }else{
+                return {
+                    status: false,
+                    error: "The username is not recognized"
+                }
+            }
         } else {
-            return false
+            return {
+                status: false,
+                error: "Username empty"
+            }
         }
     }
 
     const checkUserPassword = async (password) => {
-        return false
+        if (password) {
+            if(password === '1234'){
+                return {
+                    status: true
+                }
+            }else{
+                return {
+                    status: false,
+                    error: "The password is wrong"
+                }
+            }
+        } else {
+            return {
+                status: false,
+                error: "Password empty"
+            }
+        }
     }
 
     const redirectToUserForm = (e) => {
@@ -137,10 +166,6 @@ function SignInPage(props) {
                 />}
         </div>
     )
-}
-
-SignInPage.propTypes = {
-
 }
 
 export default SignInPage

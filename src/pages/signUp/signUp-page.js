@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import SignUpForm from './components/forms/signUp'
 import { useHistory } from "react-router-dom"
-
 import './signUp-page.scss'
 
 function SignUpPage(props) {
@@ -15,7 +13,7 @@ function SignUpPage(props) {
         password: "",
         rpassword: ""
     })
-    const [formIsValid, setFormIsValid] = useState(false)
+    // const [formIsValid, setFormIsValid] = useState(false)
     const [submitStatus, setSubmitStatus] = useState(false)
     const [inputError, setInputError] = useState({
         "firstname": {
@@ -56,8 +54,8 @@ function SignUpPage(props) {
         setUserData({ ...userData, userDataObj })
         error[inputField]["status"] = false
         error[inputField]["error"] = ""
-        setInputError({...inputError, error})
-        
+        setInputError({ ...inputError, error })
+
     }
 
     const signUpSubmitHandler = (e) => {
@@ -65,8 +63,8 @@ function SignUpPage(props) {
         setSubmitStatus(true);
         if (validateForm()) {
             setTimeout(redirectToSignIn, 1500)
-        }else{
-            setSubmitStatus(false);  
+        } else {
+            setSubmitStatus(false);
         }
     }
 
@@ -74,7 +72,7 @@ function SignUpPage(props) {
         setSubmitStatus(false);
         history.push({
             pathname: '/',
-            state: { username: userData["username"]}
+            state: { username: userData["username"] }
         })
     }
 
@@ -124,10 +122,10 @@ function SignUpPage(props) {
         }
 
         if (typeof fields["rusername"] !== "undefined") {
-            if(fields["rusername"] !== fields["username"]){
+            if (fields["rusername"] !== fields["username"]) {
                 formValidStatus = false
                 errors["rusername"]["status"] = true
-                errors["rusername"]["error"] = "Username and re-type username not match" 
+                errors["rusername"]["error"] = "Username and re-type username not match"
             }
         }
 
@@ -145,10 +143,10 @@ function SignUpPage(props) {
         }
 
         if (typeof fields["rpassword"] !== "undefined") {
-            if(fields["rpassword"] !== fields["password"]){
+            if (fields["rpassword"] !== fields["password"]) {
                 formValidStatus = false
                 errors["rpassword"]["status"] = true
-                errors["rpassword"]["error"] = "Password and re-type password not match" 
+                errors["rpassword"]["error"] = "Password and re-type password not match"
             }
         }
 
@@ -169,9 +167,6 @@ function SignUpPage(props) {
     )
 }
 
-SignUpPage.propTypes = {
-
-}
 
 export default SignUpPage
 

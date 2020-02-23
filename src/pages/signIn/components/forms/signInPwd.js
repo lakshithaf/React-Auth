@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import SubmitButton from '../../../../components/Buttons/ButtonSubmit'
 import TextInput from '../../../../components/InputFields/TextInput'
 import BackIcon from '../../icons/back.svg'
@@ -14,7 +13,7 @@ function SignInPwd({
     redirectToUserForm }) {
     return (
         <div className="signin-password-form">
-            <span className="back-icon" onClick={redirectToUserForm}><img src={BackIcon} /></span>
+            <span className="back-icon" onClick={redirectToUserForm}><img alt="" src={BackIcon} /></span>
             <span className="header">Welcome</span>
             <span className="user-name">{validUserName}</span>
             <form >
@@ -29,17 +28,13 @@ function SignInPwd({
                     autoFocus={true}
                 />
                 <SubmitButton
-                    labelName={varifyPasswordStatus ? "Verifying" : "Sign In"}
+                    labelName={varifyPasswordStatus ? "Verifying" : "Sign in"}
                     customClassName="sign-in-btn"
                     action={(e) => onSubmit(e, 'password')}
                 />
             </form >
         </div>
     )
-}
-
-SignInPwd.propTypes = {
-
 }
 
 export default SignInPwd

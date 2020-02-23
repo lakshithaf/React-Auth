@@ -10,9 +10,7 @@ import AuthPageFooter from './components/Footer/AuthPageFooter'
 const AppRoutes = () => {
   return (
     <div className="main-container">
-      <div className="left-container">
-
-      </div>
+      <div className="left-container"></div>
       <div className="right-container">
       <Switch>
         <Route exact path="/" component={SignInPage} />
@@ -24,4 +22,4 @@ const AppRoutes = () => {
   )
 }
 
-export default AppRoutes;
+export default AppRoutes
